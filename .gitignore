@@ -1,0 +1,16 @@
+cat > .gitignore << 'EOF'
+# macOS
+.DS_Store
+
+# Xcode build output
+build/
+DerivedData/
+
+# Personal Xcode settings (differ per person)
+xcuserdata/
+*.xcuserstate
+
+# Swift Package Manager
+.build/
+.swiftpm/
+EOF
