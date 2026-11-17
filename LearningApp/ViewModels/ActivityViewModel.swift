@@ -33,6 +33,17 @@ class ActivityViewModel {
     var goalStatus: GoalStatus {
         streakManager.goalStatus(goal: data.goal, loggedDays: data.loggedDays, now: now)
     }
+    // The seven days of the current week
+    var weekDays: [Date] {
+        let calendar = Calendar.current
+        guard let week = calendar.dateInterval(of: .weekOfYear, for: now) else { return [] }
+        return (0..<7).compactMap { calendar.date(byAdding: .day, value: $0, to: week.start) }
+    }
+
+    // What the learner did on a given day, or nil if nothing
+    func status(for date: Date) -> DayStatus? {
+        data.loggedDays[date.dayKey()]
+    }
 
     // Updates the time and resets the streak if too many hours passed
     func refresh() {
