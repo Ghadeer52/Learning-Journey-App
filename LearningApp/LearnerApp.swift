@@ -9,17 +9,25 @@ import SwiftUI
 
 @main
 struct LearnerApp: App {
-    private func experiment() -> String {
-        let viewModel = ActivityViewModel(storage: MockStorageService())
-        viewModel.setGoal(topic: "Swift", duration: .week)
-        viewModel.logAsLearned()
-        viewModel.freezeDay() // does nothing, today is already logged
-        return "learned \(viewModel.data.learnedCount), freezed \(viewModel.data.freezedCount), logged today: \(viewModel.isLoggedToday)"
-    }
+    @AppStorage("hasOnboarded") private var hasOnboarded = false
+    @State private var viewModel = ActivityViewModel(storage: JSONStorageService())
+
     var body: some Scene {
         WindowGroup {
-            // Temporary text. The real screens come in later steps.
-            Text("Learning Journey")
+            Group {
+                if hasOnboarded {
+                    // Temporary. The Activity page replaces this in Step 10.
+                    Button("Reset onboarding") {
+                        hasOnboarded = false
+                    }
+                } else {
+                    // Temporary. The onboarding page replaces this in Step 8.
+                    Button("Start Learning") {
+                        hasOnboarded = true
+                    }
+                }
+            }
+            .environment(viewModel)
         }
     }
 }
