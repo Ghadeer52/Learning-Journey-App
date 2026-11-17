@@ -8,7 +8,7 @@
 import Foundation
 
 /// Everything the app saves between launches.
-struct ActivityData: Codable, Equatable {
+struct ActivityData: Codable {
     var goal: LearningGoal
 
     /// The current streak of learned days. Shown as "Days Learned".
