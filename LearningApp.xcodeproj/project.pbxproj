@@ -8,8 +8,6 @@
 
 /* Begin PBXFileReference section */
 		000000000000000000000120 /* LearningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B86167430A32F0E002CDA85 /* StreakManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakManagerTests.swift; sourceTree = "<group>"; };
-		6B86167530A32F2A002CDA85 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -49,8 +47,6 @@
 		6B86167330A32F0E002CDA85 /* MyAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				6B86167430A32F0E002CDA85 /* StreakManagerTests.swift */,
-				6B86167530A32F2A002CDA85 /* Untitled.swift */,
 			);
 			path = MyAppTests;
 			sourceTree = "<group>";
