@@ -12,7 +12,7 @@ import Foundation
 /// so every rule can be tested with pretend times.
 struct StreakManager {
     /// Hours the learner has, counted from 12 AM after their last logged day.
-    private let streakHours = 32.0
+    private let streakHours = 32
 
     private let calendar: Calendar
 
@@ -25,19 +25,20 @@ struct StreakManager {
         // Nothing logged yet, so there is no streak to lose.
         guard let lastActivity else { return false }
 
-        // The 32-hour clock starts at 12 AM on the day after the last log.
+        // Deadline = 12 AM on the day after the last log, plus 32 hours.
         let startOfLastDay = calendar.startOfDay(for: lastActivity)
-        guard let clockStart = calendar.date(byAdding: .day, value: 1, to: startOfLastDay) else {
+        let afterLastDay = DateComponents(day: 1, hour: streakHours)
+        guard let deadline = calendar.date(byAdding: afterLastDay, to: startOfLastDay) else {
             return false
         }
 
-        return now.hours(since: clockStart) > streakHours
+        return now > deadline
     }
 
     /// True when today is already logged (learned or freezed).
     func isLoggedToday(lastActivity: Date?, now: Date) -> Bool {
         guard let lastActivity else { return false }
-        return lastActivity.isSameDay(as: now, calendar: calendar)
+        return calendar.isDate(lastActivity, inSameDayAs: now)
     }
 
     /// True when the learner may freeze today.
@@ -46,5 +47,32 @@ struct StreakManager {
             return false
         }
         return freezedCount < duration.maxFreezes
+    }
+
+    /// Where the learner stands with the goal.
+    /// Reached: every day of the period has an entry (learned or freezed).
+    /// Missed: the period is over and at least one day is empty.
+    func goalStatus(goal: LearningGoal, loggedDays: [String: DayStatus], now: Date) -> GoalStatus {
+        // The period starts at 12 AM on the first day and ends (not included) one week/month/year later.
+        let start = calendar.startOfDay(for: goal.startDate)
+        guard
+            let end = calendar.date(byAdding: goal.duration.calendarComponent, value: 1, to: start),
+            let totalDays = calendar.dateComponents([.day], from: start, to: end).day
+        else {
+            return .inProgress
+        }
+
+        // "yyyy-MM-dd" keys sort in date order, so we can compare them as text.
+        let startKey = start.dayKey(calendar: calendar)
+        let endKey = end.dayKey(calendar: calendar)
+        let loggedCount = loggedDays.keys.filter { $0 >= startKey && $0 < endKey }.count
+
+        if loggedCount >= totalDays {
+            return .reached
+        }
+        if now >= end {
+            return .missed
+        }
+        return .inProgress
     }
 }

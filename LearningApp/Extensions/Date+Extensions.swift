@@ -1,9 +1,10 @@
 //
-//  Untitled.swift
+//  Date+Extensions.swift
 //  LearningApp
 //
 //  Created by Ghadeer on 15/11/2026.
 //
+
 import Foundation
 
 extension Date {
@@ -16,15 +17,4 @@ extension Date {
             .day()
         return formatted(style)
     }
-
-    /// Whether this date is on the same calendar day as another date.
-    func isSameDay(as other: Date, calendar: Calendar = .current) -> Bool {
-        return calendar.isDate(self, inSameDayAs: other)
-    }
-
-    /// Hours from an earlier date until this date, including fractions.
-    func hours(since earlier: Date) -> Double {
-        return timeIntervalSince(earlier) / 3600
-    }
 }
-
