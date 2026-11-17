@@ -21,10 +21,7 @@ struct LearnerApp: App {
                         hasOnboarded = false
                     }
                 } else {
-                    // Temporary. The onboarding page replaces this in Step 8.
-                    Button("Start Learning") {
-                        hasOnboarded = true
-                    }
+                    OnboardingView()
                 }
             }
             .environment(viewModel)
