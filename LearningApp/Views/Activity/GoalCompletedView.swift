@@ -23,8 +23,8 @@ struct GoalCompletedView: View {
             Text(isReached ? "Ready for your next goal?" : "Want to set another goal?")
         } actions: {
             Button("Set a goal", systemImage: "pencil.circle", action: setGoal)
-                .buttonStyle(.glassProminent)
-                .tint(.orange)
+                .buttonStyle(.glass(.regular.tint(.orange)))
+                .foregroundStyle(.white)
         }
     }
 }

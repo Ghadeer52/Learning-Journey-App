@@ -45,6 +45,7 @@ struct LearningGoalView: View {
                     Button("Back", systemImage: "chevron.left") {
                         dismiss()
                     }
+                    .tint(.primary)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button(role: .confirm) {

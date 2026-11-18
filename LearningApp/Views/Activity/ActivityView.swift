@@ -48,10 +48,9 @@ struct ActivityView: View {
             .navigationTitle("Activity")
             .navigationSubtitle(viewModel.now.formatted(.dateTime.weekday(.wide).day().month(.wide)))
             .toolbar {
-                // Temporary screen. The real calendar comes in Step 14.
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
-                        Text("Calendar")
+                        CalendarView(activity: viewModel)
                     } label: {
                         Label("Calendar", systemImage: "calendar")
                     }
@@ -98,8 +97,8 @@ struct ActivityView: View {
                 } label: {
                     Text(viewModel.isFreezeFinished ? "Freezed for a day" : "Freeze for a day")
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 5)
                 }
+                .controlSize(.large)
                 // Cyan glass when it can be pressed, plain dark glass when it can't
                 .buttonStyle(.glass(viewModel.canFreeze ? .regular.tint(.cyan) : .regular))
                 .foregroundStyle(viewModel.canFreeze ? .white : .secondary)

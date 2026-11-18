@@ -48,11 +48,11 @@ struct OnboardingView: View {
                     hasOnboarded = true
                 } label: {
                     Text("Start Learning")
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 5)
                 }
-                .buttonStyle(.glassProminent)
-                .tint(.orange)
+                .controlSize(.large)
+                // Orange glass when it can be pressed, plain dark glass when it can't
+                .buttonStyle(.glass(viewModel.canStart ? .regular.tint(.orange) : .regular))
+                .foregroundStyle(viewModel.canStart ? .white : .secondary)
                 .disabled(!viewModel.canStart)
 
                 Text("You can edit your desire later")

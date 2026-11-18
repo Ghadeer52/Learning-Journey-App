@@ -44,6 +44,17 @@ extension ActivityViewModel {
         return viewModel
     }
 
+    // About ten weeks of history, for the calendar
+    static var previewLongHistory: ActivityViewModel {
+        var data = ActivityData(goal: LearningGoal(topic: "Swift", duration: .year, startDate: .now))
+        for daysAgo in 1...70 where !daysAgo.isMultiple(of: 5) {
+            if let day = Calendar.current.date(byAdding: .day, value: -daysAgo, to: .now) {
+                data.loggedDays[day.dayKey()] = daysAgo.isMultiple(of: 7) ? .frozen : .learned
+            }
+        }
+        return ActivityViewModel(storage: MockStorageService(stored: data))
+    }
+
     // A week goal where every day is logged
     static var previewReached: ActivityViewModel {
         sample(startedDaysAgo: 6, loggedDaysAgo: [0, 1, 2, 3, 4, 5, 6])
