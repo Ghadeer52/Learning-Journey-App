@@ -15,8 +15,7 @@ struct WeekStripView: View {
             ForEach(viewModel.weekDays, id: \.self) { day in
                 VStack {
                     Text(day.formatted(.dateTime.weekday(.narrow)))
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .font(.caption.bold())
                         .accessibilityHidden(true)
                     DayCellView(
                         date: day,

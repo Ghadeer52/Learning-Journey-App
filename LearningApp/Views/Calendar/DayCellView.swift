@@ -12,10 +12,11 @@ struct DayCellView: View {
     let status: DayStatus?
     let isToday: Bool
 
-    @ScaledMetric private var size = 36.0
+    @ScaledMetric private var size = 42.0
 
     var body: some View {
         Text(date.formatted(.dateTime.day()))
+            .font(.title3)
             .frame(width: size, height: size)
             .foregroundStyle(textColor)
             .background(backgroundColor, in: .circle)

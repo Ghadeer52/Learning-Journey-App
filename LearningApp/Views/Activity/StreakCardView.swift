@@ -14,18 +14,17 @@ struct StreakCardView: View {
     let title: String
 
     var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 2) {
             Image(systemName: systemImage)
-                .font(.title2)
+                .font(.body)
                 .foregroundStyle(color)
             Text("^[\(count) Day](inflect: true)")
                 .font(.headline)
             Text(title)
                 .font(.caption)
-                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
-        .padding()
+        .padding(.vertical, 10)
         .glassEffect(in: .rect(cornerRadius: 20))
         .accessibilityElement(children: .combine)
     }

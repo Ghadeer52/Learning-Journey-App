@@ -26,6 +26,11 @@ class ActivityViewModel {
         streakManager.isLoggedToday(lastActivity: data.lastActivityDate, now: now)
     }
 
+    // True when today was logged as learned (a freezed day can still be logged)
+    var isLearnedToday: Bool {
+        status(for: now) == .learned
+    }
+
     var canFreeze: Bool {
         streakManager.canFreeze(freezedCount: data.freezedCount, duration: data.goal.duration, isLoggedToday: isLoggedToday)
     }
@@ -33,6 +38,13 @@ class ActivityViewModel {
     var goalStatus: GoalStatus {
         streakManager.goalStatus(goal: data.goal, loggedDays: data.loggedDays, now: now)
     }
+
+    // True when today was freezed or every freeze of the goal is used
+    var isFreezeFinished: Bool {
+        let isFreezedToday = status(for: now) == .frozen
+        return isFreezedToday || data.freezedCount >= data.goal.duration.maxFreezes
+    }
+
     // The seven days of the current week
     var weekDays: [Date] {
         let calendar = Calendar.current
@@ -57,7 +69,12 @@ class ActivityViewModel {
 
     func logAsLearned() {
         refresh()
-        guard !isLoggedToday else { return }
+        guard !isLearnedToday else { return }
+
+        // A freeze made earlier today is given back
+        if status(for: now) == .frozen && data.freezedCount > 0 {
+            data.freezedCount -= 1
+        }
         data.learnedCount += 1
         markToday(.learned)
     }

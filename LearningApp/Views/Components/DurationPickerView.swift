@@ -26,27 +26,17 @@ struct DurationPickerView: View {
 
     var body: some View {
         GlassEffectContainer {
-            // Side by side when there is room, stacked when the text is very large
-            ViewThatFits {
-                HStack {
-                    buttons
-                }
-                VStack(alignment: .leading) {
-                    buttons
+            HStack {
+                ForEach(Duration.allCases, id: \.self) { duration in
+                    Button(duration.title) {
+                        selection = duration
+                    }
+                    .buttonStyle(.glass(selection == duration ? .regular.tint(.orange) : .regular))
+                    .foregroundStyle(selection == duration ? .white : .secondary)
+                    .controlSize(.large)
+                    .accessibilityAddTraits(selection == duration ? .isSelected : [])
                 }
             }
-        }
-    }
-
-    private var buttons: some View {
-        ForEach(Duration.allCases, id: \.self) { duration in
-            Button(duration.title) {
-                selection = duration
-            }
-            .buttonStyle(.glass(selection == duration ? .regular.tint(.orange) : .regular))
-            .foregroundStyle(selection == duration ? .white : .secondary)
-            .controlSize(.large)
-            .accessibilityAddTraits(selection == duration ? .isSelected : [])
         }
     }
 }

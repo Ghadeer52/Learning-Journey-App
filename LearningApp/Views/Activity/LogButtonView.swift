@@ -16,11 +16,14 @@ struct LogButtonView: View {
             Text(isLogged ? "Logged as Learned" : "Log as Learned")
                 .font(.title2.bold())
                 .multilineTextAlignment(.center)
-                .frame(width: 270, height: 270)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .buttonStyle(.plain)
         .glassEffect(isLogged ? .regular : .regular.tint(.orange).interactive(), in: .circle)
         .disabled(isLogged)
+        .aspectRatio(1, contentMode: .fit)
+        // 70% of the screen width, so it looks the same on every iPhone
+        .containerRelativeFrame(.horizontal) { width, _ in width * 0.7 }
     }
 }
 
