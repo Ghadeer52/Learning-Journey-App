@@ -22,7 +22,6 @@ struct LearnerApp: App {
                 }
             }
             .environment(viewModel)
-            .tint(.orange)
             .preferredColorScheme(.dark)
         }
     }

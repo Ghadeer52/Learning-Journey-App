@@ -20,7 +20,7 @@ struct WeekStripView: View {
                     DayCellView(
                         date: day,
                         status: viewModel.status(for: day),
-                        isToday: Calendar.current.isDateInToday(day)
+                        isToday: Calendar.current.isDate(day, inSameDayAs: viewModel.now)
                     )
                 }
                 .frame(maxWidth: .infinity)

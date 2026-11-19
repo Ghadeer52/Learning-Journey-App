@@ -17,13 +17,14 @@ struct GoalCompletedView: View {
                 Text(isReached ? "Well done!" : "You didn't reach your goal this time")
             } icon: {
                 Image(systemName: isReached ? "hands.clap.fill" : "xmark.seal")
-                    .foregroundStyle(.orange)
+                    .foregroundStyle(.gorange)
             }
         } description: {
             Text(isReached ? "Ready for your next goal?" : "Want to set another goal?")
         } actions: {
-            Button("Set a goal", systemImage: "pencil.circle", action: setGoal)
-                .buttonStyle(.glass(.regular.tint(.orange)))
+            Button("Set a goal", systemImage: "pencil.and.outline", action: setGoal)
+                .controlSize(.large)
+                .buttonStyle(.glass(.regular.tint(.gorange)))
                 .foregroundStyle(.white)
         }
     }

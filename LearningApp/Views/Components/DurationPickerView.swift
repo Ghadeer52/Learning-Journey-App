@@ -31,7 +31,7 @@ struct DurationPickerView: View {
                     Button(duration.title) {
                         selection = duration
                     }
-                    .buttonStyle(.glass(selection == duration ? .regular.tint(.orange) : .regular))
+                    .buttonStyle(.glass(selection == duration ? .regular.tint(.gorange) : .regular))
                     .foregroundStyle(selection == duration ? .white : .secondary)
                     .controlSize(.large)
                     .accessibilityAddTraits(selection == duration ? .isSelected : [])

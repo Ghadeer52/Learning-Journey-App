@@ -16,23 +16,23 @@ struct StreakCardView: View {
     var body: some View {
         VStack(spacing: 2) {
             Image(systemName: systemImage)
-                .font(.body)
+                .font(.title)
                 .foregroundStyle(color)
             Text("^[\(count) Day](inflect: true)")
-                .font(.headline)
+                .font(.title3.bold())
             Text(title)
-                .font(.caption)
+                .font(.subheadline)
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, 10)
-        .glassEffect(in: .rect(cornerRadius: 20))
+        .padding(.vertical, 16)
+        .glassEffect(in: .rect(cornerRadius: 28))
         .accessibilityElement(children: .combine)
     }
 }
 
 #Preview {
     HStack {
-        StreakCardView(systemImage: "flame.fill", color: .orange, count: 4, title: "Learned")
+        StreakCardView(systemImage: "flame.fill", color: .gorange, count: 4, title: "Learned")
         StreakCardView(systemImage: "snowflake", color: .cyan, count: 1, title: "Freezed")
     }
     .padding()

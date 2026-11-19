@@ -51,6 +51,10 @@ class CalendarViewModel {
         activity.status(for: day)
     }
 
+    func isToday(_ day: Date) -> Bool {
+        calendar.isDate(day, inSameDayAs: activity.now)
+    }
+
     // The earliest day in the saved history, or today when there is none
     private var firstLoggedDay: Date {
         let style = Date.ISO8601FormatStyle(timeZone: calendar.timeZone).year().month().day()

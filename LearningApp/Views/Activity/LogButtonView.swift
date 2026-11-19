@@ -19,11 +19,8 @@ struct LogButtonView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .buttonStyle(.plain)
-        .glassEffect(isLogged ? .regular : .regular.tint(.orange).interactive(), in: .circle)
+        .glassEffect(isLogged ? .regular : .regular.tint(.gorange.opacity(0.85)).interactive(), in: .circle)
         .disabled(isLogged)
-        .aspectRatio(1, contentMode: .fit)
-        // 70% of the screen width, so it looks the same on every iPhone
-        .containerRelativeFrame(.horizontal) { width, _ in width * 0.7 }
     }
 }
 

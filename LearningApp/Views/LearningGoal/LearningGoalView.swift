@@ -42,16 +42,18 @@ struct LearningGoalView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Back", systemImage: "chevron.left") {
+                    Button {
                         dismiss()
+                    } label: {
+                        // White, like the design, not the app's orange
+                        Label("Back", systemImage: "chevron.left")
+                            .foregroundStyle(.primary)
                     }
-                    .tint(.primary)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button(role: .confirm) {
                         save()
                     }
-                    .tint(.orange)
                     .disabled(!viewModel.canSave)
                 }
             }
@@ -60,6 +62,8 @@ struct LearningGoalView: View {
                 Button("Update") {
                     update()
                 }
+                // The default action is the filled, orange button in the system alert
+                .keyboardShortcut(.defaultAction)
             } message: {
                 Text("If you update now, your streak will start over.")
             }

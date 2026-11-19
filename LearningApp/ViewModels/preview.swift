@@ -1,5 +1,5 @@
 //
-//  ActivityViewModel+Preview.swift
+//  preview.swift
 //  LearningApp
 //
 //  Created by Ghadeer on 17/11/2026.
@@ -44,10 +44,10 @@ extension ActivityViewModel {
         return viewModel
     }
 
-    // About ten weeks of history, for the calendar
+    // About ten months of history, for the calendar
     static var previewLongHistory: ActivityViewModel {
         var data = ActivityData(goal: LearningGoal(topic: "Swift", duration: .year, startDate: .now))
-        for daysAgo in 1...70 where !daysAgo.isMultiple(of: 5) {
+        for daysAgo in 1...300 where !daysAgo.isMultiple(of: 5) {
             if let day = Calendar.current.date(byAdding: .day, value: -daysAgo, to: .now) {
                 data.loggedDays[day.dayKey()] = daysAgo.isMultiple(of: 7) ? .frozen : .learned
             }

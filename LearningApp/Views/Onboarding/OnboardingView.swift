@@ -17,7 +17,7 @@ struct OnboardingView: View {
             Image(systemName: "flame.fill")
                 .font(.largeTitle)
                 .imageScale(.large)
-                .foregroundStyle(.orange)
+                .foregroundStyle(.gorange)
                 .frame(maxWidth: .infinity)
                 .accessibilityHidden(true)
 
@@ -51,7 +51,7 @@ struct OnboardingView: View {
                 }
                 .controlSize(.large)
                 // Orange glass when it can be pressed, plain dark glass when it can't
-                .buttonStyle(.glass(viewModel.canStart ? .regular.tint(.orange) : .regular))
+                .buttonStyle(.glass(viewModel.canStart ? .regular.tint(.gorange) : .regular))
                 .foregroundStyle(viewModel.canStart ? .white : .secondary)
                 .disabled(!viewModel.canStart)
 

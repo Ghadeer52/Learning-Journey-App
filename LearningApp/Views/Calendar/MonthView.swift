@@ -32,7 +32,7 @@ struct MonthView: View {
                         DayCellView(
                             date: day,
                             status: viewModel.status(for: day),
-                            isToday: Calendar.current.isDateInToday(day)
+                            isToday: viewModel.isToday(day)
                         )
                     } else {
                         Color.clear

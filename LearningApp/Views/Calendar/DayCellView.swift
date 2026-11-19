@@ -26,7 +26,7 @@ struct DayCellView: View {
 
     private var textColor: Color {
         switch status {
-        case .learned: return .orange
+        case .learned: return .gorange
         case .frozen: return .cyan
         case nil: return isToday ? .white : .primary
         }
@@ -34,9 +34,9 @@ struct DayCellView: View {
 
     private var backgroundColor: Color {
         switch status {
-        case .learned: return .orange.opacity(0.2)
+        case .learned: return .gorange.opacity(0.2)
         case .frozen: return .cyan.opacity(0.2)
-        case nil: return isToday ? .orange : .clear
+        case nil: return isToday ? .gorange : .clear
         }
     }
 
