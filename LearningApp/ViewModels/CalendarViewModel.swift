@@ -17,12 +17,24 @@ class CalendarViewModel {
         self.activity = activity
     }
 
-    // The first day of every month, from the first logged day until this month
+    // The first day of every month, from the oldest day we show until the newest.
+    // A week, month or year goal shows all of its days, even the ones still to come.
     var months: [Date] {
-        let first = startOfMonth(for: firstLoggedDay)
-        let last = startOfMonth(for: activity.now)
+        let goal = activity.data.goal
+        let goalStart = calendar.startOfDay(for: goal.startDate)
+        let goalEnd = calendar.date(byAdding: goal.duration.calendarComponent, value: 1, to: goalStart) ?? goalStart
+        // The goal ends one period later, but that last moment is not part of it
+        let lastGoalDay = calendar.date(byAdding: .day, value: -1, to: goalEnd) ?? goalEnd
+
+        let first = startOfMonth(for: min(firstLoggedDay, goalStart))
+        let last = startOfMonth(for: max(activity.now, lastGoalDay))
         let count = calendar.dateComponents([.month], from: first, to: last).month ?? 0
         return (0...count).compactMap { calendar.date(byAdding: .month, value: $0, to: first) }
+    }
+
+    // The month that is open when the calendar appears
+    var currentMonth: Date {
+        startOfMonth(for: activity.now)
     }
 
     // The names above the days, starting with the first day of the week

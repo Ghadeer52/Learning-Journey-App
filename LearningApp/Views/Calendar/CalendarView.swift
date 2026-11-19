@@ -15,22 +15,27 @@ struct CalendarView: View {
     }
 
     var body: some View {
-        ScrollView {
-            // Lazy: a month is only built when it is about to appear
-            LazyVStack(alignment: .leading, spacing: 16) {
-                ForEach(viewModel.months, id: \.self) { month in
-                    MonthView(month: month, viewModel: viewModel)
+        ScrollViewReader { proxy in
+            ScrollView {
+                // Not lazy: with every month built, scrolling to the current month lands exactly
+                VStack(alignment: .leading, spacing: 16) {
+                    ForEach(viewModel.months, id: \.self) { month in
+                        MonthView(month: month, viewModel: viewModel)
+                            .id(month)
 
-                    // A thin line between the months
-                    if month != viewModel.months.last {
-                        Divider()
+                        // A thin line between the months
+                        if month != viewModel.months.last {
+                            Divider()
+                        }
                     }
                 }
+                .padding()
             }
-            .padding()
+            // The goal can reach into the future, so open on the current month
+            .task {
+                proxy.scrollTo(viewModel.currentMonth, anchor: .top)
+            }
         }
-        // Start at the bottom, where the current month is
-        .defaultScrollAnchor(.bottom)
         .navigationTitle("Activities")
         .navigationBarTitleDisplayMode(.inline)
     }

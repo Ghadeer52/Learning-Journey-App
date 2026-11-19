@@ -148,7 +148,9 @@ struct ActivityView: View {
                 }
                 .buttonStyle(.glass)
                 .buttonBorderShape(.circle)
-                .controlSize(.large)
+                .controlSize(.regular)
+                // A bigger icon
+                .font(.title)
                 .foregroundStyle(.primary)
             }
 
