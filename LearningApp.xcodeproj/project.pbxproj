@@ -17,7 +17,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		000000000000000000000120 /* LearningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000000000000000000120 /* Learning Journey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Learning Journey.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B4B19A430AC89D00022412F /* LearningAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearningAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -60,7 +60,7 @@
 		000000000000000000000020 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000000120 /* LearningApp.app */,
+				000000000000000000000120 /* Learning Journey.app */,
 				6B4B19A430AC89D00022412F /* LearningAppTests.xctest */,
 			);
 			name = Products;
@@ -69,9 +69,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		000000000000000100000000 /* LearningApp */ = {
+		000000000000000100000000 /* Learning Journey */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 000000000000000110000000 /* Build configuration list for PBXNativeTarget "LearningApp" */;
+			buildConfigurationList = 000000000000000110000000 /* Build configuration list for PBXNativeTarget "Learning Journey" */;
 			buildPhases = (
 				000000000000000120000000 /* Sources */,
 				000000000000000130000000 /* Frameworks */,
@@ -82,9 +82,9 @@
 			fileSystemSynchronizedGroups = (
 				000000000000000000000010 /* LearningApp */,
 			);
-			name = LearningApp;
+			name = "Learning Journey";
 			productName = MyApp;
-			productReference = 000000000000000000000120 /* LearningApp.app */;
+			productReference = 000000000000000000000120 /* Learning Journey.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6B4B19A330AC89D00022412F /* LearningAppTests */ = {
@@ -141,7 +141,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				000000000000000100000000 /* LearningApp */,
+				000000000000000100000000 /* Learning Journey */,
 				6B4B19A330AC89D00022412F /* LearningAppTests */,
 			);
 		};
@@ -176,7 +176,7 @@
 /* Begin PBXTargetDependency section */
 		6B4B19A930AC89D00022412F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 000000000000000100000000 /* LearningApp */;
+			target = 000000000000000100000000 /* Learning Journey */;
 			targetProxy = 6B4B19A830AC89D00022412F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -242,6 +242,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 27.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PROJECT_UNIQUE_VALUE = EIID562C;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -307,6 +308,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 27.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
 				PROJECT_UNIQUE_VALUE = EIID562C;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -316,9 +318,12 @@
 			};
 			name = Release;
 		};
-		000000000000000111000000 /* Debug configuration for PBXNativeTarget "LearningApp" */ = {
+		000000000000000111000000 /* Debug configuration for PBXNativeTarget "Learning Journey" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = LJ_Icon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = Gorange;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V7Z2C9VXRN;
@@ -336,6 +341,7 @@
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Learning Journey";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -364,9 +370,12 @@
 			};
 			name = Debug;
 		};
-		000000000000000112000000 /* Release configuration for PBXNativeTarget "LearningApp" */ = {
+		000000000000000112000000 /* Release configuration for PBXNativeTarget "Learning Journey" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = LJ_Icon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = Gorange;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V7Z2C9VXRN;
@@ -384,6 +393,7 @@
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Learning Journey";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -468,11 +478,11 @@
 			);
 			defaultConfigurationName = Release;
 		};
-		000000000000000110000000 /* Build configuration list for PBXNativeTarget "LearningApp" */ = {
+		000000000000000110000000 /* Build configuration list for PBXNativeTarget "Learning Journey" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000111000000 /* Debug configuration for PBXNativeTarget "LearningApp" */,
-				000000000000000112000000 /* Release configuration for PBXNativeTarget "LearningApp" */,
+				000000000000000111000000 /* Debug configuration for PBXNativeTarget "Learning Journey" */,
+				000000000000000112000000 /* Release configuration for PBXNativeTarget "Learning Journey" */,
 			);
 			defaultConfigurationName = Release;
 		};

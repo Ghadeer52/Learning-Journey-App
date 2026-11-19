@@ -16,6 +16,14 @@ class ActivityViewModel {
     var data: ActivityData
     var now = Date()
 
+    // Testing only: how far the app's clock was moved forward. It is 0 in normal use.
+    private var timeOffset: TimeInterval = 0
+
+    // The date the app uses as "now"
+    private var currentDate: Date {
+        Date().addingTimeInterval(timeOffset)
+    }
+
     init(storage: ActivityStorage) {
         self.storage = storage
         // Nothing saved yet: start with an empty goal until onboarding sets a real one
@@ -26,6 +34,11 @@ class ActivityViewModel {
         streakManager.isLoggedToday(lastActivity: data.lastActivityDate, now: now)
     }
 
+    // True when today was logged as learned (a freezed day can still be logged)
+    var isLearnedToday: Bool {
+        status(for: now) == .learned
+    }
+
     var canFreeze: Bool {
         streakManager.canFreeze(freezedCount: data.freezedCount, duration: data.goal.duration, isLoggedToday: isLoggedToday)
     }
@@ -34,9 +47,27 @@ class ActivityViewModel {
         streakManager.goalStatus(goal: data.goal, loggedDays: data.loggedDays, now: now)
     }
 
+    // True when today was freezed or every freeze of the goal is used
+    var isFreezeFinished: Bool {
+        let isFreezedToday = status(for: now) == .frozen
+        return isFreezedToday || data.freezedCount >= data.goal.duration.maxFreezes
+    }
+
+    // The seven days of the current week
+    var weekDays: [Date] {
+        let calendar = Calendar.current
+        guard let week = calendar.dateInterval(of: .weekOfYear, for: now) else { return [] }
+        return (0..<7).compactMap { calendar.date(byAdding: .day, value: $0, to: week.start) }
+    }
+
+    // What the learner did on a given day, or nil if nothing
+    func status(for date: Date) -> DayStatus? {
+        data.loggedDays[date.dayKey()]
+    }
+
     // Updates the time and resets the streak if too many hours passed
     func refresh() {
-        now = Date()
+        now = currentDate
         let shouldReset = streakManager.shouldResetStreak(lastActivity: data.lastActivityDate, now: now)
         if shouldReset && data.learnedCount > 0 {
             data.learnedCount = 0
@@ -46,7 +77,12 @@ class ActivityViewModel {
 
     func logAsLearned() {
         refresh()
-        guard !isLoggedToday else { return }
+        guard !isLearnedToday else { return }
+
+        // A freeze made earlier today is given back
+        if status(for: now) == .frozen && data.freezedCount > 0 {
+            data.freezedCount -= 1
+        }
         data.learnedCount += 1
         markToday(.learned)
     }
@@ -60,7 +96,7 @@ class ActivityViewModel {
 
     // Used for the first goal, a changed goal, and a new goal after finishing
     func setGoal(topic: String, duration: Duration) {
-        now = Date()
+        now = currentDate
         data.goal = LearningGoal(topic: topic, duration: duration, startDate: now)
         data.learnedCount = 0
         data.freezedCount = 0
@@ -68,6 +104,21 @@ class ActivityViewModel {
         data.loggedDays[now.dayKey()] = nil // today starts fresh, older days stay
         storage.save(data)
     }
+
+    #if DEBUG
+    // Testing only: moves the app's clock forward, for example by 1 day
+    func timeTravel(_ component: Calendar.Component, by value: Int) {
+        let target = Calendar.current.date(byAdding: component, value: value, to: now) ?? now
+        timeOffset = target.timeIntervalSince(Date())
+        refresh()
+    }
+
+    // Testing only: back to the real time
+    func resetTimeTravel() {
+        timeOffset = 0
+        refresh()
+    }
+    #endif
 
     private func markToday(_ status: DayStatus) {
         data.loggedDays[now.dayKey()] = status

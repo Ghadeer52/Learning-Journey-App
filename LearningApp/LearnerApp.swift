@@ -16,15 +16,13 @@ struct LearnerApp: App {
         WindowGroup {
             Group {
                 if hasOnboarded {
-                    // Temporary. The Activity page replaces this in Step 10.
-                    Button("Reset onboarding") {
-                        hasOnboarded = false
-                    }
+                    ActivityView()
                 } else {
                     OnboardingView()
                 }
             }
             .environment(viewModel)
+            .preferredColorScheme(.dark)
         }
     }
 }
