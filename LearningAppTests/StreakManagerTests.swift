@@ -7,7 +7,7 @@
 
 import Testing
 import Foundation
-@testable import LearningApp
+@testable import Learning_Journey
 
 struct StreakManagerTests {
     let calendar: Calendar
