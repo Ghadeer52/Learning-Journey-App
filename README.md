@@ -4,6 +4,12 @@ A small iOS app that helps you keep a daily learning streak. You choose a topic 
 
 Built with SwiftUI for the Apple Developer Academy challenge.
 
+## Screenshots
+
+| Activity | Logged today | Goal reached |
+|---|---|---|
+| <img src="Screenshots/ActivityView%20(Dark%20Appearance).png" width="220"> | <img src="Screenshots/Logged%20today%20(Dark%20Appearance).png" width="220"> | <img src="Screenshots/Goal%20reached%20(Dark%20Appearance).png" width="220"> |
+
 ## How it works
 
 - On the first launch you set a topic and a duration.
@@ -36,8 +42,9 @@ Built with SwiftUI for the Apple Developer Academy challenge.
 ## What it uses
 
 - SwiftUI, `@Observable`, `@AppStorage`, `@Environment`
-- Liquid Glass (`glassEffect`, `glass` and `glassProminent` button styles, `GlassEffectContainer`)
+- Liquid Glass (`glassEffect`, the `glass` button style, `GlassEffectContainer`)
 - Apple's own components: `NavigationStack`, toolbar, sheet, alert, `ContentUnavailableView`
+- The orange comes from the `Gorange` color set. It is set as the app's accent color with the `Global Accent Color Name` build setting, so system controls like the alert button use it too.
 - `Calendar` for all date math
 - Swift Testing for the unit tests
 
@@ -49,7 +56,7 @@ Built with SwiftUI for the Apple Developer Academy challenge.
 
 - The app is always in dark mode, to match the design. Apple suggests following the user's setting.
 - The "Start Learning" button stays off until a topic is typed.
-- The screen titles use Apple's standard navigation title, so the header is slightly different from the design.
+- On the Activity screen the title and the two buttons are drawn in the page, with the navigation bar hidden, so they sit on one row like the design.
 
 ## Run it
 
