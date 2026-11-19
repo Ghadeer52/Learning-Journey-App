@@ -36,7 +36,7 @@ struct OnboardingView: View {
             }
 
             VStack(alignment: .leading) {
-                Text("I want to learn it in a")
+                Text("I want to learn it in a ")
                 DurationPickerView(selection: $viewModel.duration)
             }
 
